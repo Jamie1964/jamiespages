@@ -3,193 +3,255 @@
 <head>
 <meta charset="UTF-8">
 <title>How to Treat a Female – jamiespages</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- JAMIEPAGES FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+
 <style>
-:root{
---bg-main:#05060a;--bg-panel:#10131b;--bg-soft:#151927;--border:#262b3a;
---gold:#f0c674;--gold2:#d9b15b;--text:#e5e9f0;--muted:#9da5b4;
---blue:#4aa3ff;--blue2:#2f7fd1;--green:#4fd18b;--green2:#3abf78;
---shadow:0 0 24px rgba(0,0,0,.6);
---r-lg:10px;--r-md:6px;--r-sm:4px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
-background:radial-gradient(circle at top,#151927 0,#05060a 55%,#020308 100%);
-color:var(--text);padding:20px;
-}
-a{color:var(--blue);text-decoration:none}
-a:hover{text-decoration:underline;color:var(--blue2)}
+    body {
+        margin:0;
+        background:#111;
+        color:#fff;
+        font-family:'Roboto Condensed', sans-serif;
+        font-style:italic;
+    }
 
-.page-wrap{
-max-width:1280px;margin:0 auto;display:grid;gap:24px;
-grid-template-columns:minmax(0,4fr) minmax(260px,1.6fr);
-}
-@media(max-width:960px){.page-wrap{grid-template-columns:1fr}}
+    /* HEADER */
+    .header {
+        width:100%;
+        height:160px;
+        background:#111;
+        text-align:center;
+        padding-top:10px;
+    }
 
-.main-panel{
-background:linear-gradient(145deg,#10131b,#090b11);
-border-radius:var(--r-lg);box-shadow:var(--shadow);
-padding:20px;border:1px solid var(--border);
-}
+    .header img {
+        height:140px;
+        width:auto;
+        object-fit:contain;
+        filter:drop-shadow(0 0 18px #b366ff);
+    }
 
-.header-row{
-display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
-border-bottom:1px solid #202536;padding-bottom:12px;margin-bottom:16px;
-}
-.title-block h1{
-    font-size:2.3rem;
-    color:#ff7fbf;
-    font-style:italic;
-    text-shadow:0 0 12px rgba(255,127,191,.35);
-}
-.subtitle{font-size:1.0rem;color:var(--muted)}
+    /* MAIN WRAPPER */
+    .page-wrap {
+        max-width:900px;
+        margin:40px auto;
+        padding:20px;
+    }
 
-.section{margin-top:24px;padding-top:16px;border-top:1px solid #202536}
-.section:first-of-type{border-top:none;padding-top:0;margin-top:0}
-.section h2{
-font-size:1.3rem;color:var(--gold);margin-bottom:12px;text-transform:uppercase;
-}
-.section p{margin-bottom:12px;font-size:1.05rem;line-height:1.6}
+    h1 {
+        font-size:42px;
+        color:#b366ff;
+        text-shadow:0 0 18px #b366ff;
+        margin-bottom:10px;
+    }
 
-.two-col{
-display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px
-}
-@media(max-width:720px){.two-col{grid-template-columns:1fr}}
+    h2 {
+        font-size:28px;
+        margin-top:40px;
+        color:#b366ff;
+        text-shadow:0 0 12px #b366ff;
+    }
 
-.card{
-background:#111521;border-radius:var(--r-md);
-border:1px solid var(--border);padding:14px;font-size:1.05rem
-}
-.card h3{
-margin-bottom:8px;font-size:1.05rem;color:var(--gold2);
-text-transform:uppercase;letter-spacing:.04em
-}
+    p {
+        font-size:20px;
+        line-height:1.6;
+        margin-bottom:14px;
+    }
 
-/* OUTLINE PILL LINKS */
-.pill-link{
-padding:10px 20px;border-radius:999px;
-font-size:1.05rem;font-weight:600;
-display:inline-block;text-decoration:none;
-border:2px solid;transition:.15s;
-}
+    /* JAMIEPAGES LINK STYLE — underline ALWAYS ON */
+    a {
+        color:#b366ff;
+        text-decoration:underline;
+        text-decoration-thickness:1px;
+        text-underline-offset:0px;
+        text-shadow:0 0 12px #b366ff;
+        font-weight:400; /* NORMAL WEIGHT */
+    }
 
-/* BLUE OUTLINE */
-.blue-outline{
-border-color:var(--blue);color:var(--blue);
-}
-.blue-outline:hover{
-border-color:var(--blue2);color:var(--blue2);
-}
+    a:hover {
+        text-shadow:0 0 22px #b366ff;
+        font-style:italic;
+    }
 
-/* GREEN OUTLINE */
-.green-outline{
-border-color:var(--green);color:var(--green);
-}
-.green-outline:hover{
-border-color:var(--green2);color:var(--green2);
-}
+    /* NOTICE BOX */
+    .notice {
+        background:#220022;
+        border-left:4px solid #ff66cc;
+        padding:16px;
+        border-radius:6px;
+        margin-bottom:30px;
+        font-size:20px;
+    }
 
-/* IMPORTANT BOX */
-.notice{
-background:#330000;border-left:4px solid #ff6666;
-padding:16px;border-radius:var(--r-sm);
-margin-bottom:20px;font-size:1.05rem;
-}
+    /* PILL BUTTONS — tight padding + shadow + underline + NOT BOLD */
+    .pill-link {
+        padding:3px 10px;
+        border-radius:999px;
+        font-size:20px;
+        font-weight:400;              /* NORMAL WEIGHT */
+        display:inline-block;
+        border:2px solid #b366ff;
+        color:#b366ff;
+        text-shadow:0 0 12px #b366ff;
+        text-decoration:underline;
+        box-shadow:0 0 14px #b366ff;
+        transition:.15s;
+        white-space:nowrap;
+    }
 
-.sidebar{
-background:linear-gradient(145deg,#0c1019,#05060a);
-border-radius:var(--r-lg);box-shadow:var(--shadow);
-padding:16px;border:1px solid var(--border)
-}
-.sidebar h2{
-font-size:1.15rem;color:var(--gold);margin-bottom:10px;text-transform:uppercase
-}
-.sidebar p{font-size:1.0rem;color:var(--muted);margin-bottom:8px}
+    .pill-link:hover {
+        border-color:#d1a3ff;
+        color:#d1a3ff;
+        box-shadow:0 0 22px #d1a3ff;
+    }
 
-.page-footer{
-max-width:1280px;margin:30px auto 0;padding:0 16px 20px;
-font-size:.9rem;color:#6f7482;display:flex;justify-content:space-between;
-border-top:1px solid #151927;gap:10px
-}
-@media(max-width:720px){.page-footer{flex-direction:column}}
+    /* TOP LINK — slightly larger text ONLY */
+    .pill-link-top {
+        font-size:22px;
+        padding:4px 12px;
+        font-weight:400; /* NORMAL WEIGHT */
+    }
+
+    /* CARD GRID */
+    .two-col {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+        margin-top:10px;
+    }
+
+    @media(max-width:720px){
+        .two-col { grid-template-columns:1fr; }
+    }
+
+    .card {
+        background:#1a0f1f;
+        border:1px solid #b366ff;
+        border-radius:6px;
+        padding:14px;
+        text-shadow:0 0 12px #b366ff;
+        font-size:20px;
+        line-height:1.5;
+    }
+
+    .card h3 {
+        margin-bottom:8px;
+        font-size:22px;
+        color:#d1a3ff;
+        text-shadow:0 0 12px #b366ff;
+        font-weight:400; /* NORMAL WEIGHT */
+    }
+
+    /* FOOTER */
+    footer {
+        margin-top:60px;
+        padding:20px 0;
+        text-align:center;
+        font-size:16px;
+        color:#aaa;
+    }
 </style>
 </head>
 
 <body>
+
+<!-- JAMIEPAGES HEADER -->
+<div class="header">
+    <img src="https://jamiespages.com/images/jamiespagessite-logo.png" alt="Jamie’s Pages">
+</div>
+
 <div class="page-wrap">
 
-<main class="main-panel">
+    <div class="notice">
+        <strong>Important:</strong>
+        If you arrived here from an outside source, you must read 
+        <a href="explanation.html" class="pill-link pill-link-top">this page first.</a>
+    </div>
 
-<div class="notice">
-<strong>Important:</strong>  
-If you arrived here from an outside source, you must read  
-<a href="explanation.html" style="color:#ffd27f;">this page first</a>.
-</div>
-
-<header class="header-row">
-  <div class="title-block">
     <h1>How to Treat a Female</h1>
-    <div class="subtitle">A creative philosophy for treating your work with intention, patience, and respect.</div>
-  </div>
-</header>
+    <p class="subtitle">A creative philosophy for treating your work with intention, patience, and respect.</p>
 
-<section class="section">
-  <h2>Foundational Principles</h2>
-  <div class="two-col">
-    <div class="card"><h3>Be Gentle</h3>Treat your pages with patience.</div>
-    <div class="card"><h3>Be Consistent</h3>A female likes stability.</div>
-    <div class="card"><h3>Respect Her Structure</h3>Build her clean and intentional.</div>
-    <div class="card"><h3>Be Nice</h3>Your creations respond to kindness.</div>
-  </div>
-</section>
+    <h2>Foundational Principles</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>Be Gentle</h3>
+            Treat your pages with patience.<br>
+            Move slowly.<br>
+            Don’t force structure — guide it.
+        </div>
 
-<section class="section">
-  <h2>Emotional Care</h2>
-  <p><strong>Talk to Her.</strong> Speaking to your work keeps you focused and calm.</p>
-  <p><strong>Listen to Her.</strong> Errors are communication, not failure.</p>
-  <p><strong>Understand Her Mood.</strong> Code has personality — work with it.</p>
-</section>
+        <div class="card">
+            <h3>Be Consistent</h3>
+            A female likes stability.<br>
+            Your pages thrive when you return to them regularly.
+        </div>
 
-<section class="section">
-  <h2>Maintenance & Stability</h2>
-  <div class="two-col">
-    <div class="card"><h3>Give Her Attention</h3>Pages break when ignored.</div>
-    <div class="card"><h3>Keep Her Safe</h3>Protect her from sloppy edits.</div>
-    <div class="card"><h3>Don’t Overload Her</h3>Keep files clean and organized.</div>
-    <div class="card"><h3>Give Her Space</h3>Separate concerns. Let her breathe.</div>
-  </div>
-</section>
+        <div class="card">
+            <h3>Respect Her Structure</h3>
+            Build her clean and intentional.<br>
+            Don’t clutter her.<br>
+            Let her breathe.
+        </div>
 
-<section class="section">
-  <h2>Growth & Pride</h2>
-  <p><strong>Be Proud of Her.</strong> Your pages represent you.</p>
-  <p><strong>Be Patient.</strong> Good things take time.</p>
-  <p><strong>Let Her Grow.</strong> Let your pages evolve.</p>
-  <p><strong>Treat Her Like She Matters.</strong> Because she does.</p>
-</section>
+        <div class="card">
+            <h3>Be Nice</h3>
+            Your creations respond to kindness.<br>
+            A calm mind produces calm code.
+        </div>
+    </div>
 
-<section class="section">
-  <h2>Navigation</h2>
-  <div style="display:flex;flex-wrap:wrap;gap:14px;">
-    <a class="pill-link blue-outline" href="https://jamiespages.com">jamiespages</a>
-    <a class="pill-link blue-outline" href="https://wepaythefreight.com">wepaythefreight</a>
-    <a class="pill-link blue-outline" href="https://free-casino-chips.com">free-casino-chips</a>
-  </div>
-</section>
+    <h2>Emotional Care</h2>
+    <p><strong>Talk to Her.</strong> Speaking to your work keeps you focused and calm.</p>
+    <p><strong>Listen to Her.</strong> Errors are communication, not failure.</p>
+    <p><strong>Understand Her Mood.</strong> Code has personality — work with it.</p>
 
-</main>
+    <h2>Maintenance & Stability</h2>
+    <div class="two-col">
+        <div class="card">
+            <h3>Give Her Attention</h3>
+            Pages break when ignored.<br>
+            A little maintenance goes a long way.
+        </div>
 
-<aside class="sidebar">
-  <h2>About this page</h2>
-  <p>This page describes how to treat your creations — your “females” — with intention and respect.</p>
-</aside>
+        <div class="card">
+            <h3>Keep Her Safe</h3>
+            Protect her from sloppy edits.<br>
+            Save versions.<br>
+            Don’t rush changes.
+        </div>
+
+        <div class="card">
+            <h3>Don’t Overload Her</h3>
+            Keep files clean and organized.<br>
+            Too much weight slows her down.
+        </div>
+
+        <div class="card">
+            <h3>Give Her Space</h3>
+            Separate concerns.<br>
+            Let her grow in her own sections.
+        </div>
+    </div>
+
+    <h2>Growth & Pride</h2>
+    <p><strong>Be Proud of Her.</strong> Your pages represent you.</p>
+    <p><strong>Be Patient.</strong> Good things take time.</p>
+    <p><strong>Let Her Grow.</strong> Let your pages evolve.</p>
+    <p><strong>Treat Her Like She Matters.</strong> Because she does.</p>
+
+    <h2>Navigation</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:14px; margin-top:10px;">
+        <a class="pill-link" href="https://jamiespages.com">jamiespages</a>
+        <a class="pill-link" href="https://wepaythefreight.com">wepaythefreight</a>
+        <a class="pill-link" href="https://free-casino-chips.com">free-casino-chips</a>
+    </div>
 
 </div>
 
-<footer class="page-footer">
-  <div>© 2026 jamiespages.com — All rights reserved.</div>
-  <div>Part of the jamiespages modular system.</div>
+<footer>
+    © 2026 jamiespages.com — All rights reserved.
 </footer>
 
 </body>
