@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard – FREE‑CASINO‑CHIPS.COM</title>
+<title>Master Admin Hub – JamiePages.com</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 body {
@@ -23,83 +21,83 @@ header {
     border-bottom:2px solid #222;
 }
 .container {
-    max-width:1400px;
-    margin:30px auto;
+    max-width:900px;
+    margin:40px auto;
     padding:20px;
-}
-.card {
-    background:#141414;
-    padding:20px;
-    border-radius:10px;
-    border:1px solid #222;
-    margin-bottom:25px;
 }
 button {
-    background:#66ccff;
-    color:#000;
-    padding:10px 18px;
+    background:#b366ff;
+    color:#fff;
+    padding:12px 20px;
     border:none;
-    border-radius:6px;
+    border-radius:8px;
+    font-size:18px;
     font-weight:bold;
     cursor:pointer;
-    margin-right:10px;
+    margin:10px 0;
+    width:100%;
+    text-align:left;
 }
 button:hover {
-    background:#99ddff;
+    background:#c488ff;
 }
-.dark-mode {
-    background:#fff;
-    color:#000;
-}
-.dark-mode .card {
-    background:#f2f2f2;
-    border-color:#ccc;
-}
-
-/* ⭐ 2‑COLUMN TOP LAYOUT ⭐ */
-.top-grid {
-    display:grid;
-    grid-template-columns:72% 28%;
-    gap:20px;
-}
-
-/* ⭐ 4‑COLUMN ALL PAGES GRID ⭐ */
-.grid-table {
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:10px;
-}
-.grid-item {
-    padding:10px;
-    border-bottom:1px solid #333;
-    font-size:16px;
-}
-.dark-mode .grid-item {
-    border-bottom:1px solid #ccc;
-}
-
-/* ⭐ SMALL BAR CHART ⭐ */
-.small-chart-container {
-    width:100%;
-    max-width:70%;
-    margin-top:20px;
+.section-title {
+    font-size:22px;
+    margin-top:30px;
+    margin-bottom:10px;
+    color:#d8caff;
 }
 </style>
 </head>
 
 <body>
 
-<header>Admin Dashboard – FREE‑CASINO‑CHIPS.COM</header>
+<header>Master Admin Hub – JamiePages.com</header>
 
 <div class="container">
 
-<div style="margin-bottom:20px;">
+    <div class="section-title">Site Dashboards</div>
+
+    <!-- FCC ADMIN -->
+    <button onclick="window.location.href='https://free-casino-chips.com/amin/amin.html'">
+        FCC Admin Dashboard
+    </button>
+
+    <!-- WPTF ADMIN -->
+    <button onclick="window.location.href='https://wepaythefreight.com/amin/amin.html'">
+        WPTF Admin Dashboard
+    </button>
+
+    <!-- JP ADMIN -->
+    <button onclick="window.location.href='https://jamiespages.com/amin/amin.html'">
+        JP Admin Dashboard
+    </button>
+
+    <div class="section-title">Tools</div>
+
+    <!-- ORIGINAL BUTTONS YOU WANTED TO KEEP -->
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
     <button onclick="resetCounters()">Reset All Counters</button>
     <button onclick="window.location.href='viewer.html'">Open Page Viewer</button>
 
-    <!-- ⭐ NEW BUTTON ADDED (ONLY CHANGE MADE) ⭐ -->
+    <!-- COPILOT BACKUP ENTRANCES -->
     <button onclick="window.location.href='https://jamiespages.com/copilotbackupentrances.html'">
         Copilot Backup Entrances
     </button>
+
 </div>
+
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+function resetCounters() {
+    if(!confirm("Reset ALL counters on JamiePages.com?")) return;
+
+    localStorage.clear();
+    alert("All JamiePages.com counters reset.");
+}
+</script>
+
+</body>
+</html>
