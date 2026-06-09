@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JP Dual‑Pane Page Viewer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0d0d0d;
+    color:#fff;
+}
+header {
+    background:#111;
+    padding:18px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    border-bottom:2px solid #222;
+}
+.container {
+    padding:15px;
+}
+input[type=text] {
+    width:80%;
+    padding:10px;
+    border-radius:6px;
+    border:none;
+    font-size:16px;
+}
+button {
+    padding:10px 16px;
+    margin-left:10px;
+    border:none;
+    border-radius:6px;
+    background:#b366ff;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover {
+    background:#c488ff;
+}
+.viewer-grid {
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:50% 50%;
+    height:80vh;
+    gap:10px;
+}
+iframe {
+    width:100%;
+    height:100%;
+    border:1px solid #333;
+    background:#fff;
+}
+textarea {
+    width:100%;
+    height:100%;
+    background:#141414;
+    color:#fff;
+    border:1px solid #333;
+    padding:10px;
+    font-family:monospace;
+    font-size:14px;
+    resize:none;
+}
+.dark-mode {
+    background:#fff;
+    color:#000;
+}
+.dark-mode textarea {
+    background:#f2f2f2;
+    color:#000;
+}
+.dark-mode iframe {
+    background:#fff;
+}
+</style>
+
+</head>
+<body>
+
+<header>JamiePages.com – Dual‑Pane Page Viewer</header>
+
+<div class="container">
+
+    <input type="text" id="pageUrl" placeholder="Enter JP page URL… e.g. https://jamiespages.com/index.html">
+    <button onclick="loadPage()">Load</button>
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+    <div class="viewer-grid">
+        <iframe id="previewFrame"></iframe>
+        <textarea id="sourceBox" readonly></textarea>
+    </div>
+
+</div>
+
+<script>
+function loadPage() {
+    const url = document.getElementById("pageUrl").value.trim();
+    if (!url) return alert("Enter a URL first.");
+
+    document.getElementById("previewFrame").src = url;
+
+    fetch(url)
+        .then(r => r.text())
+        .then(t => {
+            document.getElementById("sourceBox").value = t;
+        })
+        .catch(() => {
+            document.getElementById("sourceBox").value = "Error loading source.";
+        });
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+</script>
+
+</body>
+</html>
