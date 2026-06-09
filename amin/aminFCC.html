@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard – FREE‑CASINO‑CHIPS.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0d0d0d;
+    color:#fff;
+}
+header {
+    background:#111;
+    padding:20px;
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+    border-bottom:2px solid #222;
+}
+.container {
+    max-width:1400px;
+    margin:30px auto;
+    padding:20px;
+}
+.card {
+    background:#141414;
+    padding:20px;
+    border-radius:10px;
+    border:1px solid #222;
+    margin-bottom:25px;
+}
+button {
+    background:#66ccff;
+    color:#000;
+    padding:10px 18px;
+    border:none;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-right:10px;
+}
+button:hover {
+    background:#99ddff;
+}
+.dark-mode {
+    background:#fff;
+    color:#000;
+}
+.dark-mode .card {
+    background:#f2f2f2;
+    border-color:#ccc;
+}
+
+/* ⭐ 2‑COLUMN TOP LAYOUT ⭐ */
+.top-grid {
+    display:grid;
+    grid-template-columns:72% 28%;
+    gap:20px;
+}
+
+/* ⭐ 4‑COLUMN ALL PAGES GRID ⭐ */
+.grid-table {
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:10px;
+}
+.grid-item {
+    padding:10px;
+    border-bottom:1px solid #333;
+    font-size:16px;
+}
+.dark-mode .grid-item {
+    border-bottom:1px solid #ccc;
+}
+
+/* ⭐ SMALL BAR CHART ⭐ */
+.small-chart-container {
+    width:100%;
+    max-width:70%;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>Admin Dashboard – FREE‑CASINO‑CHIPS.COM</header>
+
+<div class="container">
+
+<div style="margin-bottom:20px;">
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button onclick="resetCounters()">Reset All Counters</button>
+    <button onclick="window.location.href='viewer.html'">Open Page Viewer</button>
+
+    <!-- ⭐ NEW BUTTON ADDED (ONLY CHANGE MADE) ⭐ -->
+    <button onclick="window.location.href='https://jamiespages.com/copilotbackupentrances.html'">
+        Copilot Backup Entrances
+    </button>
+</div>

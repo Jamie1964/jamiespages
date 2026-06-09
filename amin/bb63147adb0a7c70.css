@@ -1,0 +1,2 @@
+.auto-width-grid-prompt-input{display:inline-grid;vertical-align:top;align-items:start;position:relative}.auto-width-grid-prompt-input input,.auto-width-grid-prompt-input:after{width:auto;min-width:16px;grid-area:1/1;font:inherit;margin:0;resize:none;background:none;-webkit-appearance:none;-moz-appearance:none;appearance:none}.auto-width-grid-prompt-input:after{content:attr(data-value) " ";height:24px;visibility:hidden;white-space:pre-wrap}
+/*# sourceMappingURL=bb63147adb0a7c70.css.map*/
