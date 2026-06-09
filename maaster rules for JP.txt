@@ -1,0 +1,121 @@
+what goes here?                                                                                                       JAMIEPAGES — MASTER RULESET (FULL + UPDATED)
+
+1. GLOBAL IDENTITY RULES
+- Use Roboto Condensed Italic as the signature font.
+- Primary accent color is #b366ff (purple glow).
+- Do not mix identities between JamiePages, FCC, and WPTF.
+- All logos and UI elements must have transparent backgrounds unless explicitly overridden.
+- Maintain strict identity separation across all JamiePages‑related sites.
+
+2. LOGO RULES
+- Text: jamiespages.com
+- Font: Roboto Condensed Italic, weight 300
+- Increased italic angle (approx −18°)
+- Text color: #b366ff
+- Text glow: 0 0 18px #b366ff
+- Logo is enclosed in a rounded rectangle with:
+  - 2px solid #b366ff border
+  - 12px border radius
+  - Glow: 0 0 18px #b366ff
+- Underline rules:
+  - Underline sits inside the box
+  - Underline touches the letters
+  - Underline thickness is 1px
+  - Underline width matches text width exactly
+  - Underline glow: 0 0 12px #b366ff
+  - Underline has rounded ends
+- Background must be fully transparent, including letter holes.
+
+3. SITE‑WIDE LINK STYLE RULES
+- All links use Roboto Condensed Italic.
+- Link color: #b366ff.
+- Underline touches the letters.
+- Underline thickness: 1px.
+- Underline glow: 0 0 12px #b366ff.
+- Optional hover behavior:
+  - Slight glow increase to 0 0 22px #b366ff
+  - Slight italic increase (1–2 degrees)
+- No icons or emojis in links.
+
+4. PAGE LAYOUT RULES
+- All pages must be delivered as full, complete HTML files.
+- No partial snippets.
+- No external CSS; inline styling only.
+- Sidebar loads via fetch('/sidebar.html').
+- Sidebar is intentionally unstyled when opened alone.
+- Universal layout for all casino pages:
+  - h1 title above button
+  - 38px gold header
+  - Sidebar loader
+  - Page‑view counter above footer
+  - Consistent spacing and structure
+  - No icons
+  - No emojis
+  - No feedback forms unless explicitly requested
+- Header standard: 160px height, banner 100% height, no cropping.
+
+5. PAGE‑VIEW COUNTER RULES
+- All future casino pages must use the localStorage‑based ACE counter system.
+- No API counters.
+- Counter appears above the footer.
+- Counter must be auto‑fixed if missing.
+
+6. CASINO PAGE TEMPLATE RULES
+- Use the saved casino template for all new casino pages.
+- Replace placeholders:
+  CASINO_NAME
+  PAGE_FILENAME
+  REFERRAL_URL
+  PROMO_CODE
+  UTM_CAMPAIGN
+  PAGE_ID
+  SHORT_DESCRIPTION
+  LONG_INTRO
+  ADDITIONAL_DETAILS
+- Sidebar loads via fetch.
+- No feedback forms unless explicitly requested.
+- CoinsBackCasino pages must match the CiderCasino layout.
+
+7. DEPLOYMENT AND CLOUDFLARE RULES
+- User is using the new Cloudflare UI.
+- Project must be deployed via GitHub‑connected Cloudflare Pages.
+- Sidebar will look correct only when deployed.
+- No page edits required once deployed unless requested.
+- Next step after deployment is worker.js.
+
+8. SITEMAP AND ROBOTS RULES
+- robots.txt must include:
+  Sitemap: https://www.free-casino-chips.com/sitemap.xml
+- robots.txt must be placed in the site root.
+- Sitemap URL: https://www.free-casino-chips.com/sitemap.xml
+- When the site is finished, remind the user how to:
+  - Upload sitemap.xml
+  - Submit to Google Search Console
+  - Submit to Bing Webmaster Tools
+  - Verify ownership via HTML file or meta tag
+  - Check indexing and coverage
+
+9. PROJECT STATE RULES
+- Pages are fully formatted with inline styling.
+- No global CSS is used.
+- Sidebar.html is intentionally unstyled when opened alone.
+- Sidebar will look correct once deployed.
+- No page edits required.
+- Ready to move on to worker.js.
+- Deliver one page at a time, starting after bangcoins.
+- Do not get ahead; generate next page only when requested.
+
+10. RECOVERY FILE RULES
+- When asked for recovery, provide:
+  - List of site pages: ace.html, americanluck.html, babacasino.html, bangcoins.html, sidebar.html, sitemap.xml, robots.txt
+  - Sitemap URL
+  - Verification options (HTML file and meta tag)
+  - Upload instructions for Cloudflare and Cloudflare Pages
+  - GitHub repo and Cloudflare Pages setup steps
+  - Search Console submission steps
+  - FAQ JSON‑LD
+  - UTM‑tagged referral links
+  - API endpoints
+  - Restricted states list
+  - Walk‑through instructions for upload when ready
+- Do not store passwords or sensitive credentials.
