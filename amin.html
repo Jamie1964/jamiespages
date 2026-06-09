@@ -47,6 +47,17 @@ button:hover {
     margin-bottom:10px;
     color:#d8caff;
 }
+.dark-mode {
+    background:#fff;
+    color:#000;
+}
+.dark-mode header {
+    background:#e6e6e6;
+    color:#000;
+}
+.dark-mode button {
+    background:#8c4cd9;
+}
 </style>
 </head>
 
@@ -75,10 +86,16 @@ button:hover {
 
     <div class="section-title">Tools</div>
 
-    <!-- ORIGINAL BUTTONS YOU WANTED TO KEEP -->
+    <!-- DARK MODE -->
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+    <!-- RESET COUNTERS -->
     <button onclick="resetCounters()">Reset All Counters</button>
-    <button onclick="window.location.href='viewer.html'">Open Page Viewer</button>
+
+    <!-- PAGE VIEWER (UPDATED PATH) -->
+    <button onclick="window.location.href='https://jamiespages.com/amin/viewer.html'">
+        Open Page Viewer
+    </button>
 
     <!-- COPILOT BACKUP ENTRANCES -->
     <button onclick="window.location.href='https://jamiespages.com/copilotbackupentrances.html'">
@@ -91,11 +108,12 @@ button:hover {
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
 }
+
 function resetCounters() {
-    if(!confirm("Reset ALL counters on JamiePages.com?")) return;
+    if (!confirm("Reset ALL counters on JamiePages.com?")) return;
 
     localStorage.clear();
-    alert("All JamiePages.com counters reset.");
+    alert("All JamiePages.com counters have been reset.");
 }
 </script>
 
