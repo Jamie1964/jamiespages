@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard – FREE‑CASINO‑CHIPS.COM</title>
+<title>Admin Dashboard – JamiePages.com</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -35,8 +35,8 @@ header {
     margin-bottom:25px;
 }
 button {
-    background:#66ccff;
-    color:#000;
+    background:#b366ff;
+    color:#fff;
     padding:10px 18px;
     border:none;
     border-radius:6px;
@@ -45,7 +45,7 @@ button {
     margin-right:10px;
 }
 button:hover {
-    background:#99ddff;
+    background:#c488ff;
 }
 .dark-mode {
     background:#fff;
@@ -89,17 +89,213 @@ button:hover {
 
 <body>
 
-<header>Admin Dashboard – FREE‑CASINO‑CHIPS.COM</header>
+<header>Admin Dashboard – JamiePages.com</header>
 
 <div class="container">
 
 <div style="margin-bottom:20px;">
     <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
     <button onclick="resetCounters()">Reset All Counters</button>
-    <button onclick="window.location.href='viewer.html'">Open Page Viewer</button>
-
-    <!-- ⭐ NEW BUTTON ADDED (ONLY CHANGE MADE) ⭐ -->
-    <button onclick="window.location.href='https://jamiespages.com/copilotbackupentrances.html'">
-        Copilot Backup Entrances
-    </button>
 </div>
+
+<!-- ⭐ TOP GRID: LEFT = Visitors Overview + Small Chart, RIGHT = Top Pages ⭐ -->
+<div class="top-grid">
+
+    <!-- LEFT COLUMN -->
+    <div>
+
+        <!-- VISITOR OVERVIEW -->
+        <div class="card">
+            <h2>Visitors Overview</h2>
+
+            <p style="font-size:22px;margin:0;">
+                Total Visitors: <span id="totalVisitors" style="font-weight:bold;">0</span>
+            </p>
+
+            <p style="font-size:22px;margin:0;margin-top:8px;">
+                Unique Visitors (Index): <span id="uniqueIndex" style="font-weight:bold;">0</span>
+            </p>
+
+            <!-- SMALL BAR CHART -->
+            <div class="small-chart-container">
+                <canvas id="smallBarChart" height="150"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div>
+
+        <!-- TOP PAGES -->
+        <div class="card">
+            <h2>Top Pages</h2>
+            <table id="topPagesTable">
+                <tr><th>Page</th><th>Views</th></tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FULL BAR CHART -->
+<div class="card">
+    <h2>Views Per Page (Bar Chart)</h2>
+    <canvas id="barChart"></canvas>
+</div>
+
+<!-- PIE CHART -->
+<div class="card">
+    <h2>Traffic Share (Pie Chart)</h2>
+    <canvas id="pieChart"></canvas>
+</div>
+
+<!-- ALL PAGES GRID -->
+<div class="card">
+    <h2>All Pages</h2>
+    <div id="allPagesGrid" class="grid-table"></div>
+</div>
+
+<script>
+// ⭐ JP PAGE LIST ⭐
+const pages = [
+"index",
+"copilotbackupentrances",
+"female",
+"explanation"
+];
+
+// ⭐ PAGE DISPLAY NAMES ⭐
+const sidebarNames = {
+index:"Index",
+copilotbackupentrances:"Copilot Backup Entrances",
+female:"Female",
+explanation:"Explanation"
+};
+
+// ⭐ UNIQUE VISITORS FOR INDEX ⭐
+function getHomepageUniques() {
+    return parseInt(localStorage.getItem("unique_count_index") || "0");
+}
+
+// ⭐ HOMEPAGE VIEWS ⭐
+function getHomepageViews() {
+    return parseInt(localStorage.getItem("page_views_index") || "0");
+}
+
+// ⭐ MAIN ANALYTICS ⭐
+function loadAnalytics() {
+    let allData = [];
+    let totalViews = 0;
+
+    pages.forEach(id => {
+        let count;
+
+        if (id === "index") {
+            count = getHomepageViews();
+        } else {
+            const key = "views_" + id;
+            count = parseInt(localStorage.getItem(key) || "0");
+        }
+
+        allData.push({ id, count });
+        totalViews += count;
+    });
+
+    document.getElementById("totalVisitors").textContent = totalViews;
+    document.getElementById("uniqueIndex").textContent = getHomepageUniques();
+
+    // ⭐ TOP PAGES ⭐
+    const topPages = [...allData].sort((a,b)=>b.count-a.count).slice(0,10);
+    const topTable = document.getElementById("topPagesTable");
+    topPages.forEach(item=>{
+        const row=document.createElement("tr");
+        row.innerHTML=`<td>${sidebarNames[item.id]}</td><td>${item.count}</td>`;
+        topTable.appendChild(row);
+    });
+
+    // ⭐ ALL PAGES GRID ⭐
+    const grid = document.getElementById("allPagesGrid");
+    allData.forEach(item=>{
+        const div=document.createElement("div");
+        div.className="grid-item";
+        div.textContent = `${sidebarNames[item.id]} — ${item.count}`;
+        grid.appendChild(div);
+    });
+
+    drawCharts(allData);
+    drawSmallChart(allData);
+}
+
+// ⭐ FULL CHARTS ⭐
+function drawCharts(data) {
+    const labels = data.map(x=>sidebarNames[x.id]);
+    const values = data.map(x=>x.count);
+
+    new Chart(document.getElementById("barChart"), {
+        type:"bar",
+        data:{ labels, datasets:[{ label:"Views", data:values, backgroundColor:"#b366ff" }] },
+        options:{ responsive:true, scales:{ y:{ beginAtZero:true } } }
+    });
+
+    new Chart(document.getElementById("pieChart"), {
+        type:"pie",
+        data:{ labels, datasets:[{ data:values, backgroundColor:labels.map(()=>randomColor()) }] },
+        options:{ responsive:true }
+    });
+}
+
+// ⭐ SMALL BAR CHART ⭐
+function drawSmallChart(data) {
+    const filtered = data.filter(x => x.id !== "index");
+
+    new Chart(document.getElementById("smallBarChart"), {
+        type:"bar",
+        data:{
+            labels: filtered.map(x=>sidebarNames[x.id]),
+            datasets:[{
+                label:"Views",
+                data: filtered.map(x=>x.count),
+                backgroundColor:"#b366ff"
+            }]
+        },
+        options:{
+            responsive:true,
+            scales:{ y:{ beginAtZero:true } },
+            plugins:{ legend:{ display:false } }
+        }
+    });
+}
+
+function randomColor() {
+    return `hsl(${Math.random()*360},70%,60%)`;
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+
+function resetCounters() {
+    if(!confirm("Reset ALL counters on JamiePages.com?")) return;
+
+    localStorage.removeItem("page_views_index");
+    localStorage.removeItem("unique_count_index");
+
+    pages.forEach(id => {
+        if (id !== "index") {
+            localStorage.removeItem("views_" + id);
+        }
+    });
+
+    location.reload();
+}
+
+loadAnalytics();
+</script>
+
+</div>
+
+</body>
+</html>
