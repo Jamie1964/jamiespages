@@ -36,7 +36,7 @@
         filter:drop-shadow(0 0 18px #b366ff);
     }
 
-    /* SIDEBAR */
+    /* STATIC SIDEBAR */
     #sidebar {
         width:272px;
         background:#111;
@@ -51,6 +51,28 @@
         z-index:998;
         font-family:'Roboto Condensed', sans-serif;
         font-style:italic;
+    }
+
+    #sidebar h2 {
+        font-size:22px;
+        color:#b366ff;
+        margin-top:0;
+        text-shadow:0 0 12px #b366ff;
+    }
+
+    #sidebar a {
+        display:block;
+        padding:10px;
+        margin-bottom:8px;
+        background:#222;
+        color:#b366ff;
+        text-decoration:underline;
+        border-radius:6px;
+        text-shadow:0 0 12px #b366ff;
+    }
+
+    #sidebar a:hover {
+        text-shadow:0 0 22px #b366ff;
     }
 
     /* MAIN WRAPPER */
@@ -136,7 +158,6 @@
         color:#888;
     }
 
-    /* NEW MESSAGE DISPLAY TEXT */
     .message-note {
         font-size:18px;
         color:#b366ff;
@@ -145,7 +166,6 @@
         max-width:600px;
     }
 
-    /* MESSAGE BOXES */
     .posted-message {
         margin-top:25px;
         padding:15px;
@@ -172,109 +192,15 @@
     <img src="https://jamiespages.com/images/jamiespagessite-logo.png" alt="Jamie’s Pages">
 </div>
 
-<!-- SIDEBAR -->
-<div id="sidebar"></div>
+<!-- STATIC SIDEBAR -->
+<div id="sidebar">
 
-<script>
-async function buildSidebar() {
-    const sidebar = document.getElementById("sidebar");
+    <h2>Navigation</h2>
 
-    let data;
-    try {
-        const res = await fetch("/api/pages");
-        data = await res.json();
-    } catch (e) {
-        sidebar.innerHTML = "<p style='color:#888;'>Sidebar unavailable</p>";
-        return;
-    }
+    <a href="/index.html">Home</a>
+    <a href="/contactform.html">Contact Form</a>
 
-    const pages = data.pages || [];
-
-    const HIDDEN_FOLDERS = ["amin", "images"];
-    const HIDDEN_FILES = [
-        "footer.html",
-        "index2.html",
-        "copilotbackupentrances.html",
-        "tools - Copy.html",
-        "FULL WPTF TEMPLATE WITH ALL ADMIN TOYS.html"
-    ];
-
-    const allowed = pages.filter(path => {
-        const isFile = path.includes("/");
-        if (HIDDEN_FOLDERS.some(f => path === f || path.startsWith(f + "/"))) return false;
-        if (HIDDEN_FILES.includes(path)) return false;
-        if (isFile && path.endsWith("index.html") && path !== "index.html") return false;
-        return true;
-    });
-
-    const groups = {};
-    allowed.forEach(path => {
-        const parts = path.split("/");
-        if (parts.length === 1) {
-            if (!groups["_root"]) groups["_root"] = [];
-            groups["_root"].push(parts[0]);
-        } else {
-            const folder = parts[0];
-            const file = parts.slice(1).join("/");
-            if (!groups[folder]) groups[folder] = [];
-            groups[folder].push(file);
-        }
-    });
-
-    sidebar.innerHTML = `
-        <h2 style="color:#b366ff;font-size:26px;margin:0 0 10px 0;text-shadow:0 0 12px #b366ff;">
-            Jamie’s Pages
-        </h2>
-    `;
-
-    function addGroup(title, items, base="") {
-        const header = document.createElement("div");
-        header.textContent = title + " ▼";
-        header.style.marginTop = "20px";
-        header.style.fontWeight = "bold";
-        header.style.color = "#b366ff";
-        header.style.cursor = "pointer";
-        header.style.textShadow = "0 0 12px #b366ff";
-
-        const list = document.createElement("div");
-        list.style.marginLeft = "10px";
-        list.style.marginTop = "5px";
-        list.style.display = "none";
-
-        items.forEach(item => {
-            const link = document.createElement("a");
-            link.href = "/" + (base ? base + "/" + item : item);
-            link.textContent = item.replace(".html","");
-            link.style.color = "#fff";
-            link.style.textDecoration = "none";
-            link.style.display = "block";
-            link.style.margin = "6px 0";
-            link.style.textShadow = "0 0 12px #b366ff";
-            list.appendChild(link);
-        });
-
-        header.onclick = () => {
-            const hidden = list.style.display === "none";
-            list.style.display = hidden ? "block" : "none";
-            header.textContent = title + (hidden ? " ▼" : " ▲");
-        };
-
-        sidebar.appendChild(header);
-        sidebar.appendChild(list);
-    }
-
-    if (groups["_root"]) addGroup("Site Pages", groups["_root"]);
-
-    Object.keys(groups)
-        .filter(k => k !== "_root")
-        .sort()
-        .forEach(folder => {
-            addGroup(folder.charAt(0).toUpperCase() + folder.slice(1), groups[folder], folder);
-        });
-}
-
-buildSidebar();
-</script>
+</div>
 
 <!-- MAIN CONTENT -->
 <div class="page-wrapper">
@@ -295,12 +221,10 @@ buildSidebar();
         <label>Your Message</label><br>
         <textarea id="message" placeholder="type your message here..." required></textarea>
 
-        <!-- NEW MESSAGE DISPLAY TEXT -->
         <div class="message-note">
             Your message will appear here after you leave it, please be 'family friendly', thank you.
         </div>
 
-        <!-- LEFT‑JUSTIFIED BUTTON BELOW TEXTAREA -->
         <div style="text-align:left;">
             <button type="submit" class="jp-button">send message</button>
         </div>
@@ -309,7 +233,6 @@ buildSidebar();
 
     <div id="thankyou">thank you — your message has been sent.</div>
 
-    <!-- WHERE MESSAGES WILL APPEAR -->
     <div id="messages"></div>
 
     <div id="footer-loader">Loading footer…</div>
@@ -318,7 +241,6 @@ buildSidebar();
 </div>
 
 <script>
-/* LOAD EXISTING MESSAGES */
 function loadMessages() {
     const saved = JSON.parse(localStorage.getItem("jp_messages") || "[]");
     const container = document.getElementById("messages");
@@ -337,7 +259,6 @@ function loadMessages() {
     });
 }
 
-/* SUBMIT FORM */
 function submitForm(e) {
     e.preventDefault();
 
@@ -364,10 +285,8 @@ function submitForm(e) {
     document.getElementById("contactForm").reset();
 }
 
-/* INITIAL LOAD */
 loadMessages();
 
-/* FOOTER */
 fetch("/footer.html")
     .then(r => r.text())
     .then(html => {
@@ -376,5 +295,3 @@ fetch("/footer.html")
 </script>
 
 </body>
-</html>
-
