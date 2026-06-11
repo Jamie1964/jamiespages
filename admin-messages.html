@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jamie’s Message Inbox</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        background:#111;
+        color:#fff;
+        font-family:'Roboto Condensed', sans-serif;
+        padding:20px;
+        font-style:italic;
+    }
+
+    h1 {
+        color:#b366ff;
+        text-shadow:0 0 12px #b366ff;
+        font-size:40px;
+        margin-bottom:25px;
+        text-align:center;
+    }
+
+    .msg {
+        background:#1a1a1a;
+        border:1px solid #333;
+        padding:18px;
+        margin-bottom:25px;
+        border-radius:10px;
+        box-shadow:0 0 18px #000;
+    }
+
+    .msg strong {
+        color:#b366ff;
+        text-shadow:0 0 8px #b366ff;
+    }
+
+    .empty {
+        color:#888;
+        font-size:20px;
+        text-align:center;
+        margin-top:40px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Jamie’s Message Inbox</h1>
+
+<div id="messages">Loading messages…</div>
+
+<script>
+fetch("/api/messages")
+    .then(r => r.json())
+    .then(list => {
+        const box = document.getElementById("messages");
+
+        if (!list.length) {
+            box.innerHTML = "<div class='empty'>No messages yet.</div>";
+            return;
+        }
+
+        box.innerHTML = "";
+
+        list.forEach(msg => {
+            box.innerHTML += `
+                <div class="msg">
+                    <p><strong>Name:</strong> ${msg.name}</p>
+                    <p><strong>Email:</strong> ${msg.email || "No email provided"}</p>
+                    <p><strong>Message:</strong><br>${msg.message}</p>
+                    <p><strong>Sent:</strong> ${msg.timestamp}</p>
+                </div>
+            `;
+        });
+    });
+</script>
+
+</body>
+</html>
