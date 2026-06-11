@@ -138,13 +138,6 @@
         color:#b366ff;
         text-shadow:0 0 12px #b366ff;
     }
-
-    #timestamp {
-        text-align:center;
-        margin-top:20px;
-        font-size:14px;
-        color:#888;
-    }
 </style>
 </head>
 <body>
@@ -190,9 +183,6 @@
         <a href="contactform.html" class="jp-button">contact jamie</a>
     </div>
 
-    <!-- TIMESTAMP -->
-    <div id="timestamp"></div>
-
     <!-- PAGE VIEW COUNTER -->
     <div id="pageviews"></div>
 
@@ -203,9 +193,7 @@
 </div>
 
 <script>
-document.getElementById("timestamp").textContent =
-    "Last updated: " + new Date().toLocaleString();
-
+// PAGEVIEWS
 fetch("/api/pageviews?path=/index.html")
     .then(r => r.json())
     .then(d => {
@@ -213,12 +201,27 @@ fetch("/api/pageviews?path=/index.html")
             "Page views: " + (d.views || 0);
     });
 
-fetch("/sidebar.html")
-    .then(r => r.text())
-    .then(html => {
-        document.getElementById("sidebar").innerHTML = html;
-    });
+// WORKER-POWERED SIDEBAR
+fetch("/api/pages")
+  .then(r => r.json())
+  .then(data => {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.innerHTML = "";
 
+    data.pages.forEach(page => {
+      const link = document.createElement("a");
+      link.href = "/" + page;
+      link.textContent = page.replace(".html", "");
+      link.style.display = "block";
+      link.style.color = "#b366ff";
+      link.style.marginBottom = "8px";
+      link.style.textDecoration = "underline";
+      link.style.textShadow = "0 0 12px #b366ff";
+      sidebar.appendChild(link);
+    });
+  });
+
+// FOOTER
 fetch("/footer.html")
     .then(r => r.text())
     .then(html => {

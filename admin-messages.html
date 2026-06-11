@@ -29,11 +29,32 @@
         margin-bottom:25px;
         border-radius:10px;
         box-shadow:0 0 18px #000;
+        position:relative;
     }
 
     .msg strong {
         color:#b366ff;
         text-shadow:0 0 8px #b366ff;
+    }
+
+    .delete-btn {
+        position:absolute;
+        top:15px;
+        right:15px;
+        background:#b366ff;
+        border:none;
+        padding:6px 12px;
+        border-radius:6px;
+        color:#111;
+        font-weight:bold;
+        cursor:pointer;
+        box-shadow:0 0 12px #b366ff;
+        transition:0.2s;
+    }
+
+    .delete-btn:hover {
+        background:#d1a3ff;
+        box-shadow:0 0 18px #d1a3ff;
     }
 
     .empty {
@@ -51,6 +72,20 @@
 <div id="messages">Loading messages…</div>
 
 <script>
+function deleteMessage(id, element) {
+    if (!confirm("Delete this message?")) return;
+
+    fetch(`/api/messages/${id}`, { method: "DELETE" })
+        .then(r => r.json())
+        .then(res => {
+            if (res.success) {
+                element.remove();
+            } else {
+                alert("Failed to delete message.");
+            }
+        });
+}
+
 fetch("/api/messages")
     .then(r => r.json())
     .then(list => {
@@ -64,14 +99,20 @@ fetch("/api/messages")
         box.innerHTML = "";
 
         list.forEach(msg => {
-            box.innerHTML += `
-                <div class="msg">
-                    <p><strong>Name:</strong> ${msg.name}</p>
-                    <p><strong>Email:</strong> ${msg.email || "No email provided"}</p>
-                    <p><strong>Message:</strong><br>${msg.message}</p>
-                    <p><strong>Sent:</strong> ${msg.timestamp}</p>
-                </div>
+            const div = document.createElement("div");
+            div.className = "msg";
+
+            div.innerHTML = `
+                <button class="delete-btn">Delete</button>
+                <p><strong>Name:</strong> ${msg.name}</p>
+                <p><strong>Email:</strong> ${msg.email || "No email provided"}</p>
+                <p><strong>Message:</strong><br>${msg.message}</p>
+                <p><strong>Sent:</strong> ${msg.timestamp}</p>
             `;
+
+            div.querySelector(".delete-btn").onclick = () => deleteMessage(msg.id, div);
+
+            box.appendChild(div);
         });
     });
 </script>
