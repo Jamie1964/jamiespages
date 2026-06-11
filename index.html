@@ -61,7 +61,6 @@
         max-width:900px;
     }
 
-    /* NEW LEFT PADDING FIX */
     .content-inner {
         padding-left:35px;
     }
@@ -104,7 +103,6 @@
         filter:drop-shadow(0 0 22px #b366ff);
     }
 
-    /* CONTACT BUTTON */
     .jp-button {
         display:inline-block;
         padding:6px 18px;
@@ -150,6 +148,14 @@
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="https://jamiespages.com/images/jamiespagessite-logo.png" alt="Jamie’s Pages">
+</div>
+
+<!-- SIDEBAR LOADER -->
+<div id="sidebar">Loading sidebar…</div>
 
 <!-- MAIN CONTENT -->
 <div class="page-wrapper">
@@ -207,12 +213,20 @@ fetch("/api/pageviews?path=/index.html")
             "Page views: " + (d.views || 0);
     });
 
+fetch("/sidebar.html")
+    .then(r => r.text())
+    .then(html => {
+        document.getElementById("sidebar").innerHTML = html;
+    });
+
 fetch("/footer.html")
     .then(r => r.text())
     .then(html => {
         document.getElementById("footer-loader").innerHTML = html;
     });
 </script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"663448bacb74448e80b17fde5808180b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 
 </body>
 </html>
