@@ -36,7 +36,7 @@
         filter:drop-shadow(0 0 18px #b366ff);
     }
 
-    /* SIDEBAR */
+    /* STATIC SIDEBAR */
     #sidebar {
         width:272px;
         background:#111;
@@ -51,6 +51,28 @@
         z-index:998;
         font-family:'Roboto Condensed', sans-serif;
         font-style:italic;
+    }
+
+    #sidebar h2 {
+        font-size:22px;
+        color:#b366ff;
+        margin-top:0;
+        text-shadow:0 0 12px #b366ff;
+    }
+
+    #sidebar a {
+        display:block;
+        padding:10px;
+        margin-bottom:8px;
+        background:#222;
+        color:#b366ff;
+        text-decoration:underline;
+        border-radius:6px;
+        text-shadow:0 0 12px #b366ff;
+    }
+
+    #sidebar a:hover {
+        text-shadow:0 0 22px #b366ff;
     }
 
     /* MAIN WRAPPER */
@@ -147,8 +169,24 @@
     <img src="https://jamiespages.com/images/jamiespagessite-logo.png" alt="Jamie’s Pages">
 </div>
 
-<!-- SIDEBAR LOADER -->
-<div id="sidebar">Loading sidebar…</div>
+<!-- STATIC SIDEBAR -->
+<div id="sidebar">
+
+    <h2>Navigation</h2>
+
+    <a href="/index.html">Home</a>
+    <a href="/contactform.html">Contact Form</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy Policy</a>
+
+    <h2>Pages</h2>
+
+    <a href="/projects.html">Projects</a>
+    <a href="/rules.html">Rules</a>
+    <a href="/philosophy.html">Philosophy</a>
+    <a href="/links.html">Links</a>
+
+</div>
 
 <!-- MAIN CONTENT -->
 <div class="page-wrapper">
@@ -193,33 +231,13 @@
 </div>
 
 <script>
-// PAGEVIEWS
+// PAGEVIEWS (still works with your Worker)
 fetch("/api/pageviews?path=/index.html")
     .then(r => r.json())
     .then(d => {
         document.getElementById("pageviews").textContent =
             "Page views: " + (d.views || 0);
     });
-
-// WORKER-POWERED SIDEBAR
-fetch("/api/pages")
-  .then(r => r.json())
-  .then(data => {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.innerHTML = "";
-
-    data.pages.forEach(page => {
-      const link = document.createElement("a");
-      link.href = "/" + page;
-      link.textContent = page.replace(".html", "");
-      link.style.display = "block";
-      link.style.color = "#b366ff";
-      link.style.marginBottom = "8px";
-      link.style.textDecoration = "underline";
-      link.style.textShadow = "0 0 12px #b366ff";
-      sidebar.appendChild(link);
-    });
-  });
 
 // FOOTER
 fetch("/footer.html")
@@ -229,7 +247,4 @@ fetch("/footer.html")
     });
 </script>
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"663448bacb74448e80b17fde5808180b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-
-</body>
-</html>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"663448bacb74448e80b17fde5808180b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous">
