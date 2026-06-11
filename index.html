@@ -125,6 +125,16 @@
         filter:drop-shadow(0 0 22px #b366ff);
     }
 
+    /* REMOVE PURPLE SHADOW FROM WPTF LOGO */
+    .wptf-logo {
+        filter:none !important;
+    }
+
+    /* REMOVE PURPLE SHADOW FROM FCC LOGO */
+    .fcc-logo {
+        filter:none !important;
+    }
+
     .jp-button {
         display:inline-block;
         padding:6px 18px;
@@ -169,22 +179,13 @@
     <img src="https://jamiespages.com/images/jamiespagessite-logo.png" alt="Jamie’s Pages">
 </div>
 
-<!-- STATIC SIDEBAR -->
+<!-- STATIC SIDEBAR (TRIMMED DOWN) -->
 <div id="sidebar">
 
     <h2>Navigation</h2>
 
     <a href="/index.html">Home</a>
     <a href="/contactform.html">Contact Form</a>
-    <a href="/about.html">About</a>
-    <a href="/privacy.html">Privacy Policy</a>
-
-    <h2>Pages</h2>
-
-    <a href="/projects.html">Projects</a>
-    <a href="/rules.html">Rules</a>
-    <a href="/philosophy.html">Philosophy</a>
-    <a href="/links.html">Links</a>
 
 </div>
 
@@ -193,22 +194,23 @@
 <div class="content-inner">
 
     <h1>Website Design</h1>
-    <p>I’ve started creating websites. So far, I am here:</p>
+
+    <p>I started creating websites in May 2026. So far, this is where I am...</p>
 
     <h2>My Live Websites</h2>
 
-    <!-- FCC LOGO -->
+    <!-- FCC LOGO — NO PURPLE SHADOW -->
     <a class="logo-link" href="https://free-casino-chips.com" target="_blank">
-        <img src="https://free-casino-chips.com/images/logotransparent.png" alt="Free-Casino-Chips.com">
+        <img class="fcc-logo" src="https://free-casino-chips.com/images/logotransparent.png" alt="Free-Casino-Chips.com">
     </a>
 
     <br><br>
 
     <h2>Projects Under Construction</h2>
 
-    <!-- WPTF LOGO -->
+    <!-- WPTF LOGO — NO PURPLE SHADOW -->
     <a class="logo-link" href="https://wepaythefreight.com" target="_blank">
-        <img src="https://wepaythefreight.com/images/WPTF-logo.png" alt="WePayTheFreight.com">
+        <img class="wptf-logo" src="https://wepaythefreight.com/images/WPTF-logo.png" alt="WePayTheFreight.com">
     </a>
 
     <!-- JP LOGO -->
@@ -247,4 +249,7 @@ fetch("/footer.html")
     });
 </script>
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"663448bacb74448e80b17fde5808180b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous">
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"663448bacb74448e80b17fde5808180b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+</body>
+</html>
