@@ -241,9 +241,27 @@
     </div>
 
 
+
+<div id="viewCounter" style="font-size: 18px; color: gold; margin-top: 10px;"></div>
+
+<script>
+  const pageKey = "jp_pageviews_" + window.location.pathname;
+  let views = localStorage.getItem(pageKey);
+
+  if (!views) {
+    views = 1;
+  } else {
+    views = parseInt(views) + 1;
+  }
+
+  localStorage.setItem(pageKey, views);
+
+  document.getElementById("viewCounter").innerText = "Views: " + views;
+</script>
+
     <!-- LAST UPDATED -->
     <div id="lastupdated">
-        Last updated: July 2, 2026 — 6:38 AM MDT
+        Last updated: July 2, 2026 — 6:58 AM MDT
     </div>
 
     <!-- FOOTER LOADER -->
@@ -269,24 +287,6 @@ fetch("footer.html")
     .then(html => {
         document.getElementById("footer-loader").innerHTML = html;
     });
-</script>
-
-
-<div id="viewCounter" style="font-size: 18px; color: gold; margin-top: 10px;"></div>
-
-<script>
-  const pageKey = "jp_pageviews_" + window.location.pathname;
-  let views = localStorage.getItem(pageKey);
-
-  if (!views) {
-    views = 1;
-  } else {
-    views = parseInt(views) + 1;
-  }
-
-  localStorage.setItem(pageKey, views);
-
-  document.getElementById("viewCounter").innerText = "Views: " + views;
 </script>
 
 
