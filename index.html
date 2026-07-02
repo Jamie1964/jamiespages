@@ -264,8 +264,8 @@ fetch("sidebar.html")
         document.getElementById("sidebar-loader").innerHTML = html;
     });
 
-// PAGEVIEWS (correct path for homepage)
-fetch("/api/pageviews?path=/")
+// PAGEVIEWS (homepage uses empty path)
+fetch("/api/pageviews?path=")
     .then(r => r.json())
     .then(d => {
         document.getElementById("pageviews").textContent =
@@ -279,6 +279,7 @@ fetch("footer.html")
         document.getElementById("footer-loader").innerHTML = html;
     });
 </script>
+
 
 
 
