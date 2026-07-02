@@ -182,7 +182,7 @@
         text-shadow:0 0 12px #b366ff;
         margin-top:6px;
     ">
-        (AFFORDABLE: Nellyi.com — Complete website including 1 year hosting the .com name, she owns it all. $500)
+        (AFFORDABLE: Nellyi.com — Complete website including 1 year hosting the .com name, she owns it all. $300)
     </p>
 
     <h2>My Live Websites</h2>
@@ -256,7 +256,7 @@
 
 <script>
 // LOAD SIDEBAR
-fetch("/sidebar.html")
+fetch("sidebar.html")
     .then(r => r.text())
     .then(html => {
         document.getElementById("sidebar-loader").innerHTML = html;
@@ -268,6 +268,13 @@ fetch("/api/pageviews?path=/index.html")
     .then(d => {
         document.getElementById("pageviews").textContent =
             "Page views: " + (d.views || 0);
+    });
+
+// LOAD FOOTER
+fetch("footer.html")
+    .then(r => r.text())
+    .then(html => {
+        document.getElementById("footer-loader").innerHTML = html;
     });
 </script>
 
