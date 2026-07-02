@@ -240,9 +240,6 @@
         </a>
     </div>
 
-    <!-- FOOTER LOADER -->
-    <div id="footer-loader">Loading footer…</div>
-
     <!-- PAGE VIEW COUNTER -->
     <div id="pageviews"></div>
 
@@ -250,6 +247,9 @@
     <div id="lastupdated">
         Last updated: July 1, 2026 — 7:18 PM MDT
     </div>
+
+    <!-- FOOTER LOADER -->
+    <div id="footer-loader">Loading footer…</div>
 
 </div> <!-- end content-inner -->
 </div> <!-- end page-wrapper -->
@@ -266,6 +266,7 @@ fetch("sidebar.html")
 fetch("/api/pageviews?path=/index.html")
     .then(r => r.json())
     .then(d => {
+        console.log("Counter loaded:", d);
         document.getElementById("pageviews").textContent =
             "Page views: " + (d.views || 0);
     });
@@ -281,3 +282,4 @@ fetch("footer.html")
 </body>
 </html>
 <!-- end of JP.com/index.html -->
+
