@@ -262,11 +262,10 @@ fetch("sidebar.html")
         document.getElementById("sidebar-loader").innerHTML = html;
     });
 
-// PAGEVIEWS
-fetch("/api/pageviews?path=/index.html")
+// PAGEVIEWS (correct path for homepage)
+fetch("/api/pageviews?path=/")
     .then(r => r.json())
     .then(d => {
-        console.log("Counter loaded:", d);
         document.getElementById("pageviews").textContent =
             "Page views: " + (d.views || 0);
     });
@@ -278,6 +277,7 @@ fetch("footer.html")
         document.getElementById("footer-loader").innerHTML = html;
     });
 </script>
+
 
 </body>
 </html>
